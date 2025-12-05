@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Charles Ham - Computer Systems Technology Student & Backend Developer.">
+    <title>Charles Ham | Portfolio</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            /* Palette: Grounded, professional, slightly industrial/agricultural */
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --accent-color: #2c3e50; /* Slate Blue - Professional */
+            --highlight-color: #e67e22; /* Muted Orange - Nod to equipment/farm */
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+            --section-padding: 80px 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; border-bottom: 2px solid var(--highlight-color); display: inline-block; margin-bottom: 2rem; padding-bottom: 5px; }
+        h3 { font-size: 1.25rem; margin-top: 1rem; }
+        p { margin-bottom: 1rem; }
+        a { text-decoration: none; color: var(--accent-color); transition: color 0.3s; }
+        a:hover { color: var(--highlight-color); }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-right: 10px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        .btn-primary:hover { background-color: #1a252f; transform: translateY(-2px); }
+
+        .btn-secondary {
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+        .btn-secondary:hover { background-color: var(--accent-color); color: white; transform: translateY(-2px); }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--accent-color); }
+
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; }
+
+        /* --- HERO SECTION --- */
+        #home {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--section-padding);
+            background: linear-gradient(135deg, #ecf0f1 0%, #ffffff 100%);
+        }
+
+        .hero-content { max-width: 700px; }
+        .tagline { font-size: 1.2rem; color: #555; margin-bottom: 2rem; font-style: italic; }
+
+        /* --- ABOUT SECTION --- */
+        #about { padding: var(--section-padding); background-color: white; }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .quick-facts {
+            background-color: var(--bg-color);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--highlight-color);
+        }
+        .quick-facts ul { list-style: none; }
+        .quick-facts li { margin-bottom: 10px; font-size: 0.9rem; }
+        .quick-facts strong { color: var(--accent-color); }
+
+        /* --- SKILLS SECTION --- */
+        #skills { padding: var(--section-padding); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .skill-list li { margin-bottom: 8px; position: relative; padding-left: 20px; list-style: none; }
+        .skill-list li::before {
+            content: "•";
+            color: var(--highlight-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- ARTIFACTS SECTION --- */
+        #artifacts { padding: var(--section-padding); background-color: white; }
+
+        .artifact-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .artifact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .tech-stack {
+            font-size: 0.85rem;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .artifact-details ul { margin-left: 20px; margin-bottom: 20px; }
+        
+        .reflection-box {
+            background-color: white;
+            padding: 20px;
+            border-left: 4px solid var(--highlight-color);
+            font-size: 0.95rem;
+        }
+
+        .reflection-box h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        /* --- CONTACT SECTION --- */
+        #contact { padding: var(--section-padding); text-align: center; }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item { font-weight: 600; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+        footer a { color: #bdc3c7; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .nav-container { flex-direction: column; }
+            .nav-links { margin-top: 15px; gap: 15px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .hero-content { padding: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Charles Ham</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#artifacts">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="hero-content">
+            <h1>Hi, I’m Charles Ham.</h1>
+            <p class="tagline">I keep servers and grain bins organized.</p>
+            <p>
+                Computer Systems Technology student at Saskatchewan Polytechnic. <br>
+                Backend-focused developer and farm kid looking for internship or junior roles.
+            </p>
+            <div style="margin-top: 2rem;">
+                <a href="#skills" class="btn btn-primary">View My Skills</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        I grew up on a family grain farm in Saskatchewan, so I learned early on that things need to work, not just look pretty. If a combine breaks down during harvest, you fix it. I bring that same mindset to software development.
+                    </p>
+                    <p>
+                        I am currently finishing my diploma in Computer Systems Technology at SaskPolytech. While I enjoy coding, my real interest lies in the systems that run behind the scenes—servers, databases, and networks. I like digging into why a request failed or how to structure a database so it doesn't fall apart in a year.
+                    </p>
+                    <p>
+                        <strong>My Goal:</strong> I’m looking for an internship or junior role where I can work on backend infrastructure, support systems, or agricultural technology. I want to help build reliable tools in environments where downtime actually costs money.
+                    </p>
+                </div>
+                <div class="quick-facts">
+                    <h3>Quick Facts</h3>
+                    <ul>
+                        <li><strong>Location:</strong> Saskatoon, SK / Family Farm</li>
+                        <li><strong>Education:</strong> CST Diploma (In Progress)</li>
+                        <li><strong>Vibe:</strong> Practical & Direct</li>
+                        <li><strong>Tech Interests:</strong> Backend, Linux, Automation</li>
+                        <li><strong>Farm Skill:</strong> Can troubleshoot a tractor and a Kubernetes cluster in the same day.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Skills & Experience</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-card">
+                    <h3>Languages & Tools</h3>
+                    <ul class="skill-list">
+                        <li><strong>Backend:</strong> Python (FastAPI), Java, C#</li>
+                        <li><strong>Frontend:</strong> JavaScript/TypeScript, React (Vite), Tailwind</li>
+                        <li><strong>Data:</strong> SQL (MySQL/SQLite), SQLAlchemy</li>
+                        <li><strong>Infra/Tools:</strong> Linux, Git, Docker basics</li>
+                        <li><strong>Mobile:</strong> Android Dev (Kotlin/Java)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Practical Skills</h3>
+                    <ul class="skill-list">
+                        <li><strong>Debugging:</strong> Comfortable reading logs and stepping through code to find root causes.</li>
+                        <li><strong>System Integration:</strong> Connecting APIs to databases and frontends.</li>
+                        <li><strong>Code Maintenance:</strong> Reading and understanding other people's code.</li>
+                        <li><strong>Documentation:</strong> Writing clear instructions for setup and deployment.</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Employability</h3>
+                    <ul class="skill-list">
+                        <li><strong>Reliability:</strong> Accustomed to farm hours; I show up and get the work done.</li>
+                        <li><strong>Problem Solving:</strong> I focus on the simplest solution that actually solves the problem.</li>
+                        <li><strong>Teamwork:</strong> Experienced in using Git/Bitbucket for team collaboration and merge conflict resolution.</li>
+                        <li><strong>Adaptability:</strong> Used to troubleshooting under pressure with limited resources.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="artifacts">
+        <div class="container">
+            <h2>Artifacts & Reflections</h2>
+            <p style="margin-bottom: 30px;">Samples of my work during the CST program.</p>
+
+            <div class="artifact-card">
+                <div class="artifact-header">
+                    <h3>1. Electronic Master Schedule (EMS)</h3>
+                    <span class="tech-stack">React • FastAPI • SQLAlchemy</span>
+                </div>
+                <div class="artifact-details">
+                    <p><strong>Project:</strong> A scheduling web application for Continuing Care Assistants.</p>
+                    <ul>
+                        <li>Worked in a group to add features to a large existing codebase.</li>
+                        <li>Implemented complex scheduling rules to prevent double-booking.</li>
+                        <li>Focused on backend logic to ensure data consistency across the schedule.</li>
+                    </ul>
+                    <div class="reflection-box">
+                        <h4>Reflection</h4>
+                        <p>
+                            This project taught me that writing new code is often easier than reading existing code. The hardest part was debugging merge conflicts when my teammates and I touched the same scheduling logic. I learned the importance of clear communication before pushing changes. 
+                            <br><br>
+                            <strong>Future Plan:</strong> Next time, I would insist on better initial documentation and more frequent small commits to avoid the massive merge conflicts we dealt with at the end.
+                        </p>
+                        </div>
+                </div>
+                </div>
+
+            <div class="artifact-card">
+                <div class="artifact-header">
+                    <h3>2. Pet Gallery & Adoption App</h3>
+                    <span class="tech-stack">Full Stack • JWT Auth • SQL</span>
+                </div>
+                <div class="artifact-details">
+                    <p><strong>Project:</strong> A secure web platform allowing users to browse pets, favorite them, and manage adoption requests.</p>
+                    <ul>
+                        <li>Built secure login systems using JWT and Google OAuth.</li>
+                        <li>Designed the relational database schema for users, pets, and reviews.</li>
+                        <li>Created a CRUD API for the admin dashboard.</li>
+                    </ul>
+                    <div class="reflection-box">
+                        <h4>Reflection</h4>
+                        <p>
+                            I focused heavily on the data structure here rather than just the UI. The challenge was managing the state between the frontend and backend when a user logged out or their token expired. I learned a lot about HTTP status codes and securing endpoints.
+                            <br><br>
+                            <strong>Future Plan:</strong> In a future iteration, I would implement refresh tokens to keep users logged in longer without compromising security, as the current session timeout is too short for good UX.
+                        </p>
+                        </div>
+                </div>
+            </div>
+
+            <div class="artifact-card">
+                <div class="artifact-header">
+                    <h3>3. Grain Bin Inventory Tool</h3>
+                    <span class="tech-stack">Android • Python Scripts</span>
+                </div>
+                <div class="artifact-details">
+                    <p><strong>Project:</strong> An Android app and script collection to track grain inventory levels and movement on my family farm.</p>
+                    <ul>
+                        <li>Inspired by commercial tools like LibraCart but simplified for our specific needs.</li>
+                        <li>Designed the UI specifically for non-technical users (my family members).</li>
+                        <li>Created a logging system to track grain movement from bin to truck.</li>
+                    </ul>
+                    <div class="reflection-box">
+                        <h4>Reflection</h4>
+                        <p>
+                            This was a personal project to solve a real problem. The biggest takeaway was user experience—buttons on a screen need to be large and clear when you are bouncing around in a truck. I also learned how to parse raw data logs into something actually readable for inventory reports.
+                            <br><br>
+                            <strong>Future Plan:</strong> Next time, I would build this with "Offline First" architecture, because cellular service on the back fields is spotty and data syncing failed a few times.
+                        </p>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Information</h2>
+            <p style="max-width: 600px; margin: 0 auto;">
+                I am actively looking for internship or junior developer opportunities. If you need someone who can handle backend logic, troubleshoot systems, and work hard, let’s talk.
+            </p>
+            
+            <div class="contact-methods">
+                <div class="contact-item">
+                    📧 <a href="mailto:your.email@saskpolytech.ca">your.email@saskpolytech.ca</a>
+                </div>
+                <div class="contact-item">
+                    🔗 <a href="https://linkedin.com" target="_blank">LinkedIn Profile</a>
+                </div>
+                <div class="contact-item">
+                    💻 <a href="https://github.com" target="_blank">GitHub Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2025 Charles Ham. <br>
+                Last updated: November 28, 2025
+            </p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">
+                <a href="#home">Back to Top</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
