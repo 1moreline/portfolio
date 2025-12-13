@@ -103,17 +103,106 @@
 
         /* --- HERO SECTION --- */
         #home {
-            min-height: 80vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: var(--section-padding);
-            background: linear-gradient(135deg, #ecf0f1 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero-content { max-width: 700px; }
-        .tagline { font-size: 1.2rem; color: #555; margin-bottom: 2rem; font-style: italic; }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.65);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.45) 100%);
+            z-index: 1;
+        }
+
+        .hero-content { 
+            max-width: 700px; 
+            position: relative;
+            z-index: 2;
+        }
+
+        #home h1 {
+            color: white;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.4);
+            font-size: 3rem;
+        }
+
+        #home p {
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        #home .tagline {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.3rem;
+        }
+
+        #home .btn-primary {
+            background-color: white;
+            color: var(--accent-color);
+            text-shadow: none;
+        }
+
+        #home .btn-primary:hover {
+            background-color: var(--highlight-color);
+            color: white;
+        }
+
+        #home .btn-secondary {
+            border-color: white;
+            color: white;
+            text-shadow: none;
+        }
+
+        #home .btn-secondary:hover {
+            background-color: white;
+            color: var(--accent-color);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: white;
+            opacity: 0.8;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
 
         /* --- ABOUT SECTION --- */
         #about { padding: var(--section-padding); background-color: white; }
@@ -231,7 +320,7 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
+            #home h1 { font-size: 2rem; }
             .nav-container { flex-direction: column; }
             .nav-links { margin-top: 15px; gap: 15px; }
             .about-grid { grid-template-columns: 1fr; }
@@ -254,8 +343,12 @@
     </nav>
 
     <header id="home">
+        <div class="hero-bg">
+            <img src="https://media.giphy.com/media/XqCKfrRcB31PG/giphy.gif" alt="Wheat field background">
+        </div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Hi, I’m Charles Ham.</h1>
+            <h1>Hi, I'm Charles Ham.</h1>
             <p class="tagline">I keep servers and grain bins organized.</p>
             <p>
                 Computer Systems Technology student at Saskatchewan Polytechnic. <br>
@@ -265,6 +358,11 @@
                 <a href="#skills" class="btn btn-primary">View My Skills</a>
                 <a href="#contact" class="btn btn-secondary">Contact Me</a>
             </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
         </div>
     </header>
 
@@ -280,7 +378,7 @@
                         I am currently finishing my diploma in Computer Systems Technology at SaskPolytech. While I enjoy coding, my real interest lies in the systems that run behind the scenes - Servers, databases, and networks. I like digging into why a request failed or how to structure a database so it doesn't fall apart in a year.
                     </p>
                     <p>
-                        <strong>My Goal:</strong> I’m looking for an internship or junior role where I can work on backend infrastructure, support systems, or agricultural technology. I want to help build reliable tools in environments where downtime actually costs money.
+                        <strong>My Goal:</strong> I'm looking for an internship or junior role where I can work on backend infrastructure, support systems, or agricultural technology. I want to help build reliable tools in environments where downtime actually costs money.
                     </p>
                 </div>
                 <div class="quick-facts">
@@ -419,7 +517,7 @@
         <div class="container">
             <h2>Contact Information</h2>
             <p style="max-width: 600px; margin: 0 auto;">
-                I am actively looking for work in any side of tech, especially agriculture. If you need someone who can handle your programming needs, troubleshoot anything, and work hard, let’s talk.
+                I am actively looking for work in any side of tech, especially agriculture. If you need someone who can handle your programming needs, troubleshoot anything, and work hard, let's talk.
             </p>
             
             <div class="contact-methods">
@@ -440,7 +538,7 @@
         <div class="container">
             <p>
                 &copy; 2025 Charles Ham. <br>
-                Last updated: Dec 04, 2025
+                Last updated: Dec 12, 2025
             </p>
             <p style="margin-top: 10px; font-size: 0.8rem;">
                 <a href="#home">Back to Top</a>
@@ -450,9 +548,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
